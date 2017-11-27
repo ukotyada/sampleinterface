@@ -3,6 +3,6 @@ applications:
   memory: 512M
   instances: 1
   domain: mybluemix.net
-  name: InterfacePOCTest
-  host: InterfacePOCTest
+  name: InterfacePOC
+  host: InterfacePOC
   disk_quota: 1024M
