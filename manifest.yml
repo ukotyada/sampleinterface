@@ -3,6 +3,6 @@ applications:
   memory: 128M
   instances: 1
   domain: mybluemix.net
-  name: InterPOC
-  host: InterPOC
+  name: Interface_Poc
+  host: Interface_Poc
   disk_quota: 1024M
