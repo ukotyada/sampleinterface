@@ -1,0 +1,182 @@
+<link rel="stylesheet" type="text/css" media="screen" href="css/style.css" />
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+ <link rel="stylesheet" href="/css/daterangepicker.css" type="text/css">
+  <script type="text/javascript" src="js/moment.js"></script> 
+      <script type="text/javascript" src="js/daterangepicker.js"></script>
+<style>
+#reportrange
+{
+width:100%;
+}
+.status{
+  background-color: #4491df;
+    color: white;
+    font-weight: bold;
+    height: 80px;
+    max-width: 93%;
+    padding-top: 20px;
+}
+.status select input
+{
+color:#000 !important;
+}
+#content
+{
+margin-left:80px;
+padding-left:40px;
+min-height:480px;
+}
+.table1 th
+{
+background-color:#0084C6;
+color:white;
+padding:8px;
+font-size:12px;
+}
+td
+{
+padding:8px;
+}
+tr:nth-child(even) {
+    background-color:#F6F6F6;
+}
+.btn
+{
+color:#fff !important;
+background-color:#71273d;
+}
+.btn:hover
+{
+color:#ffff !important;
+background-color:#4491DF !important;
+}
+.status select input{
+margin:10px;
+}
+.table1
+{
+width:100%;
+}
+#calendar {
+    position: relative;
+    z-index: 1;
+    left: -25px;
+    top: 1px;
+    color: #7B7B7B;
+    cursor:pointer;
+    width: 0;
+}
+ul li
+{
+margin-top:4px;
+}
+
+ul.nav1 li a
+{
+color:#0084C6;
+}
+ul.nav1 li a.active
+{
+background-color:#0084C6;
+color:white;
+}
+label
+{
+color:#0084C6;
+}
+.pagination{
+float:right;
+}
+</style>
+	<div>
+	
+	<div id="content-area" role="main">
+	<div class="col-sm-12">
+	<div class="col-sm-2">
+<ul class="nav nav-navbar nav1">
+<li><a href="#/home">Dashboard</a></li>
+<li ><a href="#/orderstatus">Orders</a></li>
+<li ><a href="#/invoicesearch">Invoices</a></li>
+<li class="active"><a href="#/claimssearch">Claims</a></li>
+</ul>
+<br>
+<br>
+<div>
+<label class="search1">Search By Order Number </label>
+
+ 
+  <!-- record that this customer has been selected -->
+   <input ng-model="comp.orderId" width="100%"/>
+  </div>
+
+<br>
+<div>
+<label class="search1">Search By Dates</label><br>
+
+  <input type="textfield" name="reportrange"  id="reportrange" cssClass="form-control pull-left" onchange="Date1();"  /> 
+	<input type="hidden" id="datepickerfrom" name="datepickerfrom" />
+   <input type="hidden" id="datepicker" name="datepicker"/><br/>
+ 
+
+</div>
+</div>
+<div class="col-sm-10">
+<div class="bgstyle">
+<label>Claims Data</label>
+</div>
+	<div class="table1">
+<table width="100%" class="table-bordered table-responsive order-items">
+	<thead class="thead">
+		<th>Order #</th>
+		<th>Claims Date</th>
+		<th>Case Status</th>
+		<th>Customer #</th>
+	</thead>
+<tbody>
+     <!-- use our custom filter to only display customers from the orderTypes selected-->
+      <tr ng-repeat="o in filtered = data| filter: comp|orderBy:'-DateUpdated' |startFrom:(currentPage-1)*entryLimit| limitTo:entryLimit">
+          <td><a ng-click="selectedOrder(o.orderId)">{{o.orderId}}</td></href>
+			
+		
+			<td>{{o.DateUpdated}}</td>
+			<td>{{o.CaseStatus}}</td>
+			<td>{{o.CustomerNumber}}</td>
+      </tr>
+  </tbody>
+	
+	
+	</table>
+	<pagination 
+      ng-model="currentPage"
+      total-items="totalItems"
+     max-size="noOfPages" 
+      boundary-links="true"
+	  items-per-page="entryLimit"
+	  ng-hide="loading">
+    </pagination>
+	
+	
+</div>
+	</div>
+	</div>
+</div>
+ <script type="text/javascript" src="js/DateValidation.js"></script>
+        <script type="text/javascript" src="js/daterangepicker.js"></script>
+		<script type="text/javascript">
+                  function Date1() {
+				 // alert("in function");
+                     var date = document.getElementById("reportrange").value
+                  var arr = date.split("-");
+                  var x = arr[1].trim();
+                     document.getElementById("datepickerfrom").value = arr[0];
+                   document.getElementById("datepicker").value = x;
+                                }
+                                                    </script>
+	</div>
+	

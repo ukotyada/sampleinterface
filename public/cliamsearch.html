@@ -1,0 +1,92 @@
+<link rel="stylesheet" type="text/css" media="screen" href="css/style.css" />
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+ <link rel="stylesheet" href="/css/daterangepicker.css" type="text/css">
+  <script type="text/javascript" src="js/moment.js"></script> 
+      <script type="text/javascript" src="js/daterangepicker.js"></script>
+<style>
+ .bgstyle
+{
+background:#EFEFEF;
+width:100%;
+padding: 10px;
+padding-bottom: 5px;
+}
+ul.nav1 li a
+{
+color:#0084C6;
+}
+.search
+{
+color:#0084C6;
+border:1px solid black;
+}
+ul.nav1 li a:active
+{
+color:white;
+background-color:#0084C6;
+}
+th
+{
+background-color:#0084C6;
+color:white;
+padding:8px;
+font-size:12px;
+}
+td
+{
+padding:8px;
+}
+tr:nth-child(even) {
+    background-color:#F6F6F6;
+}
+label
+{
+color:#0084C6;
+}
+</style>
+<div>
+<div id="content-area" role="main">
+<div class="col-sm-12">
+<div class="col-sm-2">
+<ul class="nav nav-navbar nav1">
+<li ><a href="#/home">Dashboard</a></li>
+<li><a href="#/orderstatus">Orders</a></li>
+<li><a href="#/invoicesearch">Invoices</a></li>
+<li class="active"><a href="#/claimsearch">Claims</a></li>
+</ul>
+</div>
+
+
+
+<div class="col-sm-10" style="padding-top:20px">
+<div class="bgstyle">
+<label>Claims Information</label>
+</div>
+<table width="100%" class="table-bordered table-responsive order-items">
+	<thead class="thead">
+		<th>Order #</th>
+		<th>DateUpdated</th>
+		<th>CaseStatus</th>
+		<th>CustomerId</th>
+	</thead>
+<tbody>
+     <!-- use our custom filter to only display customers from the orderTypes selected-->
+      <tr ng-repeat="o in data">
+          <td><a ng-click="selectedOrder(o.orderId)">{{o.orderId}}</td></href>
+			
+		
+			<td>{{o.DateUpdated}}</td>
+			<td>{{o.CaseStatus}}</td>
+			<td>{{o.CustomerNumber}}</td>
+      </tr>
+  </tbody>
+	</table> 
+
+</div>
+</div>
+</div>
+</div>
+

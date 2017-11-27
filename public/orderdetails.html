@@ -1,0 +1,156 @@
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<!-- jQuery library
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<style>
+.order1{
+
+background-color:#F5F5F5;
+padding:10px 0px;
+color:#0080C0;
+}
+.odate
+{
+background-color:#676CFB;
+color:#ffff;
+padding:10px;
+text-align:center;
+}
+#content
+{
+margin:40px;
+min-height:480px;
+}
+th
+{
+padding:8px;
+font-size:12px;
+}
+td
+{
+padding:8px;
+font-size:12px;
+}
+tr:nth-child(even) {
+    background-color:#EFEFEF;
+}
+p
+{
+padding-top:10px;
+font-size:12px;
+}
+.odetails
+{
+  border: 1px solid lightblue;
+   height: auto;
+   float: left;
+   padding-bottom: 15px;
+   }
+   
+	d {
+		padding: 8px;
+		font-size: 12px;
+	}
+
+	tr:nth-child(even) {
+		background-color: #EFEFEF;
+	}
+
+	p {
+		padding-top: 10px;
+		font-size: 12px;
+	}
+
+	.odetails
+{
+  border: 1px solid #E2E1DD;
+     height: auto;
+   float: left;
+  padding: 5px;
+   }
+</style>
+ <div>
+
+
+
+	<div id="content-area" role="main">
+	<div class="col-sm-12">
+	<div class="col-sm-2">
+			<ul class="nav nav-navbar nav1">
+				<li><a href="#/home">Dashboard</a></li>
+				<li class="active"><a href="#/orderstatus">Orders</a></li>
+				<li><a href="#/invoicesearch">Invoices</a></li>
+				<li><a href="#/claimssearch">Claims</a></li>
+			</ul>
+		</div>
+		<div class="col-sm-10" style="overflow:auto">
+			<div class="odetails">
+				<div class="col-sm-12 order1">
+					<div class="col-sm-2">
+						<label>Order Id:{{cust}}</label>
+					</div>
+					<div class="col-sm-4">
+						<label>Order Date:{{date}}</label>
+					</div>
+				</div>
+
+				<div class="col-sm-12">
+					<div class="col-sm-4" ng-repeat="c in details">
+						<b> Job/Project Information</b>
+						<p>
+							{{c.ProjectName}}<br> PO#:{{poNumber}}
+
+							<br> Market Segment: {{dealer.marketSegment}}<br> Market code: {{dealer.marketCode}}<br> End user: {{customerId}}
+					</div>
+					<div class="col-sm-4">
+						<div class="col-sm-6" ng-repeat="s in ship">
+							<b>Ship to</b><br>
+							<p>
+								{{s.addressline}}<br> {{s.zipCode}}
+								<br> {{s.state}}
+								<br> {{s.country}}
+							</p>
+						</div>
+						<div class="col-sm-6" ng-repeat="so in sold">
+							<b>Bill to</b> <br>
+							<p>
+								{{so.addressline}}<br> {{so.zipCode}}
+								<br> {{so.state}}
+								<br> {{so.country}}
+							</p>
+						</div>
+					</div>
+					<div class="col-sm-4">
+						<b> Sales Information</b><br>
+						<p>JOHN BRADSON , JR ,AL 100-978662 AL.JOHNBRADSON@INTERFACE.COM
+						</p>
+					</div>
+				</div>
+				<br>
+				<div class="col-sm-12 table1">
+					<table width="100%" class="table-bordered table-responsive order-items">
+						<thead class="odate">
+							<th> Products </th>
+							<th> Quantity (Sq. Ft)</th>
+							<th> Price <label>{{sold[0].country==='United States'?'(USD)':'(CAD)'}}</label></th>
+							<th> Shipping </th>
+							<th> Status </th>
+						</thead>
+						<tr ng-repeat="pr in products">
+							<td> {{pr.productName}} </td>
+							<td> {{pr.quantity |number:2}} </td>
+							<td> {{pr.unitPrice |number:2}}</td>
+							<td> Requested Date : {{reqDate}}<br> Estimated Ship Date:{{reqDate}} <br> Frieght Type : COL<br>
+							</td>
+							<td>{{pr.orderstatus}}</td>
+						</tr>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+</div>

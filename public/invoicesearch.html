@@ -1,0 +1,186 @@
+<link rel="stylesheet" type="text/css" media="screen" href="css/style.css" />
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+ <link rel="stylesheet" href="/css/daterangepicker.css" type="text/css">
+  <script type="text/javascript" src="js/moment.js"></script> 
+      <script type="text/javascript" src="js/daterangepicker.js"></script>
+<style>
+#reportrange
+{
+width:100%;
+}
+.status{
+  background-color: #4491df;
+    color: white;
+    font-weight: bold;
+    height: 80px;
+    max-width: 93%;
+    padding-top: 20px;
+}
+.status select input
+{
+color:#000 !important;
+}
+#content
+{
+margin-left:80px;
+padding-left:40px;
+min-height:480px;
+}
+.table1 th
+{
+background-color:#0084C6;
+color:white;
+padding:8px;
+font-size:12px;
+}
+td
+{
+padding:8px;
+}
+tr:nth-child(even) {
+    background-color:#F6F6F6;
+}
+.btn
+{
+color:#fff !important;
+background-color:#71273d;
+}
+.btn:hover
+{
+color:#ffff !important;
+background-color:#4491DF !important;
+}
+.status select input{
+margin:10px;
+}
+.table1
+{
+width:100%;
+}
+#calendar {
+    position: relative;
+    z-index: 1;
+    left: -25px;
+    top: 1px;
+    color: #7B7B7B;
+    cursor:pointer;
+    width: 0;
+}
+ul li
+{
+margin-top:4px;
+}
+
+ul.nav1 li a
+{
+color:#0084C6;
+}
+ul.nav1 li a.active
+{
+background-color:#0084C6;
+color:white;
+}
+label
+{
+color:#0084C6;
+}
+.pagination{
+float:right;
+}
+</style>
+	<div>
+        
+ <script type="text/javascript" src="js/DateValidation.js"></script>
+ <script type="text/javascript" src="js/daterangepicker.js">
+ $('#reportdaterange').datepicker('setDate', null);
+</script>
+	
+	<div id="content-area" role="main">
+	<div class="col-sm-12">
+	<div class="col-sm-2">
+<ul class="nav nav-navbar nav1">
+<li><a href="#/home">Dashboard</a></li>
+<li ><a href="#/orderstatus">Orders</a></li>
+<li class="active"><a href="#/invoicesearch">Invoices</a></li>
+<li><a href="#/claimssearch">Claims</a></li>
+</ul>
+
+<br>
+<label class="search1">Search By Invoice Number </label>
+ <br>
+ 
+   <div>
+  <!-- record that this customer has been selected -->
+  <input type="text" width="100%" ng-change="searchInvoice()" ng-model="invoiceSearch" >
+  </div>
+  
+  <br>
+  <label class="search1">Search By Order Number </label>
+   <br>
+   
+     <div>
+    <!-- record that this customer has been selected -->
+    <input type="text" width="100%" ng-change="searchOrder()" ng-model="orderSearch" >
+    </div>
+<br>
+<label class="search1">Search By Dates</label><br>
+
+<input type="text" id="reportrange" cssClass="form-control pull-left" ng-model="reportrangedateinvoice" ng-change="searchOrderByDate()"  /> 
+<input type="hidden" id="datepickerfrom" name="datepickerfrom" />
+   <input type="hidden" id="datepicker" name="datepicker"/><br/>
+ 
+
+</div>
+
+
+<div class="col-sm-10">
+<div class="bgstyle">
+<label>Invoices Data</label>
+</div>
+	<div class="table1">
+	<table width="100%" border="0" class="table-bordered table-responsive order-items">
+		<thead class="thead">
+		<th>Invoice #</th>
+		<th>Invoice Type</th>
+		<th>Order #</th>
+		<th>Invoice Date</th>
+		<th>B/L #</th>
+		<th>Customer #</th>
+	</thead>
+	<tr ng-repeat="o in filteredorder">
+		<td><a href="#/invoicedetails/{{o.invoiceNo}}">{{o.invoiceNo}}</a></td>
+		<td>{{o.order_response[0].invoiceType}}</td>
+		<td>{{o.orderId}}</td>
+		<td>{{o.order_response[0].invoiceDate}}</td>
+		<td>{{o.order_response[0].blNum}}</td>
+		<td>{{o.customerId}}</td>
+	</tr>
+		</table>
+		
+</div>
+
+<pagination 
+      ng-model="currentPage"
+      total-items="order.length"
+      max-size="maxSize"  
+      boundary-links="true"
+	  items-per-page="itemsPerPage"
+	  ng-hide="loading">
+    </pagination>
+	
+	</div>
+<br>
+
+	
+	</div>
+	</div>
+
+
+	</div>
+	

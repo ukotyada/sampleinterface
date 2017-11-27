@@ -1,0 +1,166 @@
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<!-- jQuery library
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<style>
+.order1{
+
+background-color:#F5F5F5;
+padding:10px;
+color:#0080C0;
+}
+.odate
+{
+background-color:#676CFB;
+color:#ffff;
+padding:10px;
+text-align:center;
+}
+#content
+{
+margin:40px;
+min-height:480px;
+}
+th
+{
+padding:8px;
+font-size:12px;
+}
+td
+{
+padding:8px;
+font-size:12px;
+}
+tr:nth-child(even) {
+    background-color:#EFEFEF;
+}
+p
+{
+padding-top:10px;
+font-size:12px;
+}
+.odetails
+{
+  border: 1px solid #E2E1DD;
+   height: auto;
+   float: left;
+ // padding: 5px;
+   }
+</style>
+ <div>
+
+
+ 	<div id="content-area" role="main">
+<div class="col-sm-12">
+<div class="col-sm-2">
+<ul class="nav nav-navbar nav1">
+<li ><a href="#/home">Dashboard</a></li>
+<li><a href="#/orderstatus">Orders</a></li>
+<li><a href="#/invoicesearch">Invoices</a></li>
+<li class="active"><a href="#/claimsearch">Claims</a></li>
+</ul>
+</div>
+
+<div class="col-sm-10" style="overflow:auto">
+
+	<div class="odetails">
+ <div class="col-sm-12 order1" >
+ <label>Claim Details</label>
+ </div>
+ 
+ <div class="col-sm-12">
+	 <div class="col-sm-6">
+		<div class="col-sm-12">
+		<label>Interface Americas,Inc Interface FLOR,LLC</label>
+		</div>
+		<div class="col-sm-12">
+		<label>Customer #:</label>	{{cnumber}}
+		</div>
+		<div class="col-sm-12">
+		<label>Order #:</label>	{{orderid}}
+		</div>
+		<div class="col-sm-12">
+		<label>State:</label>	{{stat}}
+		</div>
+		
+		<div class="col-sm-12">
+		<label>Zip Code:</label>	{{zcode}}
+		</div>
+		<div class="col-sm-12">
+		 <label>Country:</label>	{{ctry}} 
+		</div>
+		<div class="col-sm-12">
+		<label>Phone #:</label> 706-882-1891 
+		</div>
+		<div class="col-sm-12">
+		<label>Fax #:</label> 706-882-1891 
+		</div>
+		<div class="col-sm-12">
+		<label>Description:</label>	{{des}}
+		</div>
+	</div>
+
+
+	
+	 <div class="col-sm-6">
+	 <br>
+	 <div class="col-sm-12">
+	  <label>Short Item #:</label>	{{sitemno}}
+	 </div>
+	 <div class="col-sm-12">
+	  <label>Lot Serial #:</label>	{{ltsno}}
+	 </div>
+	 <div class="col-sm-12">
+	 <label>Case Status:</label>	{{cstatus}}
+	 </div>
+	 <div class="col-sm-12">
+	 <label>Case Reason:</label>	{{cReason}}
+	 </div>
+	 <div class="col-sm-12">
+	 <label>Case Group:</label>	{{cGroup}}
+	 </div>
+	 <div class="col-sm-12">
+	  <label>Business Unit:</label>	{{bUnit}}
+	 </div>
+	 <div class="col-sm-12">
+	 <label>Contact Name1:</label>	{{contactname1}}
+	 </div>
+	 <div class="col-sm-12">
+	 <label>Contact Name2:</label>	{{ContactName2}}
+	 </div>
+	 <div class="col-sm-12">
+	 <label>E-Mail Address:</label>	{{EMailAddress}}
+	  </div>
+	 
+	 </div>
+ </div>
+ <hr>
+ 
+<div class="col-sm-12 table1">
+ <table width="100%" class="table-bordered table-responsive order-items">
+	 <thead class="odate">
+		 
+		  <th>Claim Date</th>
+		 <th>Remarks</th>
+		 
+	 </thead>
+   <tbody>
+	       <tr ng-repeat="o in products">
+			
+			<td>{{o.DateUpdated}}</td>
+			<td>{{o.Remark1}}</td>
+			  
+			</tr>
+	  </tbody>
+	
+   
+     
+ </table>
+ </div>
+ </div>
+ </div>
+ </div>
+ </div>

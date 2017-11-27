@@ -1,0 +1,224 @@
+<link rel="stylesheet" type="text/css" media="screen" href="css/style.css" />
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+ <link rel="stylesheet" href="/css/daterangepicker.css" type="text/css">
+  <script type="text/javascript" src="js/moment.js"></script> 
+      <script type="text/javascript" src="js/daterangepicker.js">
+       $('#reportrange').val()=null;
+      </script>
+
+      
+<style>
+#reportrange
+{
+width:100%;
+}
+.status{
+  background-color: #4491df;
+    color: white;
+    font-weight: bold;
+    height: 80px;
+    max-width: 93%;
+    padding-top: 20px;
+}
+.status select input
+{
+color:#000 !important;
+}
+#content
+{
+margin-left:80px;
+padding-left:40px;
+min-height:480px;
+}
+.table1 th
+{
+background-color:#0084C6;
+color:white;
+padding:8px;
+font-size:12px;
+}
+td
+{
+padding:8px;
+}
+tr:nth-child(even) {
+    background-color:#F6F6F6;
+}
+.btn
+{
+color:#fff !important;
+background-color:#71273d;
+}
+.btn:hover
+{
+color:#ffff !important;
+background-color:#4491DF !important;
+}
+.status select input{
+margin:10px;
+}
+.table1
+{
+width:100%;
+}
+#calendar {
+    position: relative;
+    z-index: 1;
+    left: -25px;
+    top: 1px;
+    color: #7B7B7B;
+    cursor:pointer;
+    width: 0;
+}
+ul li
+{
+margin-top:4px;
+}
+
+
+ul.nav1 li a.active
+{
+background-color:#0084C6;
+color:white;
+}
+label
+{
+color:#0084C6;
+}
+.pagination{
+float:right;
+}
+.pagination > .active > a, .pagination > .active > a:focus, .pagination > .active > a:hover, .pagination > .active > span, .pagination > .active > span:focus, .pagination > .active > span:hover {
+    background-color: #E2E1DD;
+    border-color: #E2E1DD;
+    color: #4D442E;
+    cursor: default;
+    z-index: 3;
+}
+</style>
+	<div>
+	
+            <script type="text/javascript" src="js/DateValidation.js"></script>
+            <script type="text/javascript" src="js/daterangepicker.js"></script>
+	<div id="content-area" role="main">
+	<div class="col-sm-12">
+	<div class="col-sm-2">
+<ul class="nav nav-navbar nav1">
+<li><a href="#/home">Dashboard</a></li>
+<li class="active"><a href="#/orderstatus">Orders</a></li>
+<li><a href="#/invoicesearch">Invoices</a></li>
+<li><a href="#/claimssearch">Claims</a></li>
+</ul>
+<br>
+<br>
+<label class="search1">Search By Order Type </label>
+ <br>
+ 
+   <div ng-repeat="o in order11  | unique: 'orderType'">
+  <!-- record that this customer has been selected -->
+  <input type="checkbox" ng-checked="o.checked" ng-click="click()" ng-model="o.checked" /> {{ o.orderType }}
+</div>
+
+<br>
+<label class="search1">Search By Order Number </label>
+ <br>
+ <div>
+    <!-- record that this customer has been selected -->
+    <input type="text" width="100%" ng-change="searchOrder()" ng-model="orderSearch" >
+ </div>
+<br>
+<label class="search1">Search By Dates</label><br>
+
+  <input date-range-picker type="daterange" id="reportrange" cssClass="form-control date-picker pull-left" ng-model="reportrangedateorder" ng-change="searchOrderByDate()"/> 
+  <!--<div id="reportrange" class="form-control pull-left" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc; width: 100%">
+        <i class="glyphicon glyphicon-calendar fa fa-calendar"></i>&nbsp;
+        <span></span> <b class="caret"></b>
+    </div> -->
+  
+	<input type="hidden" id="datepickerfrom" name="datepickerfrom" />
+   <input type="hidden" id="datepickerto" name="datepicker"/><br/>
+ 
+
+</div>
+<div class="col-sm-10">
+<div class="bgstyle">
+<label>Orders Data</label>
+</div>
+	<!-- <p style="color:red">{{errmsg1}}</p> -->
+	<!-- <div class="status form-control">
+		OrderType <select ng-model="orderType" ng-options="x for x in names">
+		</select>
+		from <input type="datetime" name="fdate" ng-model="fdate" id="datepicker">
+		<i id="calendar" class="fa fa-calendar-plus-o"></i>
+		to <input type="datetime" name="tdate" ng-model="tdate" id="datepicker1">
+		<i id="calendar" class="fa fa-calendar-plus-o"></i>
+		for <select ng-model="selectedFor" ng-options="y for y in ids">
+		</select>
+		ID:<input type="text" ng-model="id" placeholder="Enter your ID">
+		<button class="btn"  type="submit" ng-click="go()">GO </button>
+	</div> -->
+	
+	 <div ng-show="order"> 
+	<div class="table1">
+	<table width="100%" border="0" class="table-bordered table-responsive order-items">
+		<thead>
+			<th>Order #</th>
+			<th>Type</th>
+			<th>Order Date</th>
+			<th>PO #</th>
+			<th>Job/Project Name</th>
+			<th>Status</th>
+		</thead>
+		
+		
+  <!-- table heading goes here -->
+  <tbody>
+      <!-- use our custom filter to only display customers from the orderTypes selected -->
+      <tr ng-repeat="o in filteredorder">
+          <td><a ng-click="selectedOrder(o.orderId)">{{o.orderId}}</td></href>
+			
+			<td>{{o.orderType}}</td>
+			<td>{{o.orderDate}}</td>
+			<td>{{o.PoNumber}}</td>
+			<td>{{o.projectName}}</td>
+			<td>{{o.status}}</td>
+      </tr>
+  </tbody>
+		</table>
+		</div>
+		<pagination 
+      ng-model="currentPage"
+      total-items="order.length"
+      max-size="maxSize"  
+      boundary-links="true"
+	  items-per-page="itemsPerPage"
+	  ng-hide="loading">
+    </pagination>
+
+	
+	</div>
+<br>
+
+	
+	</div>
+	</div>
+
+       
+  <script type="text/javascript">
+                  function Date1() {
+                  var date = $('#reportrange').val();
+                  var arr = date.split("-");
+                  var x = arr[1].trim();
+  
+ }
+                                                    </script>
+
+</script>
+	</div>
+	

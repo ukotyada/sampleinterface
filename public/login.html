@@ -1,0 +1,296 @@
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+<!-- jQuery library
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>jQuery UI Datepicker - Default functionality</title>
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
+
+<style>
+
+form{
+	padding: 20px;
+	    box-shadow: 0 2px 4px 0 rgba(0,0,0,0.16),0 2px 15px 0 rgba(0,0,0,0.12) !important;
+}
+h4{
+    text-align: center;
+}
+.btn{
+	border-radius: 0px;
+	height:35px;
+}
+.form-control{
+	border-radius: 0px;
+	margin-bottom: 10px;
+}
+p{
+	margin-bottom: 10px;
+	margin-top: 10px;
+	text-align: center;
+}
+.blue{
+	color: #337ab7;
+}
+.fa{
+	color: #337ab7;
+}
+
+i{
+	margin-left: 5px;
+	margin-right: 5px;
+}
+
+
+
+
+.flip {
+  -webkit-perspective: 800;
+perspective: 800;
+
+    position: relative;
+}
+.flip .card.flipped {
+  -webkit-transform: rotatey(-180deg);
+    transform: rotatey(-180deg);
+}
+.flip .card {
+
+  height: 100%;
+  -webkit-transform-style: preserve-3d;
+  -webkit-transition: 0.5s;
+    transform-style: preserve-3d;
+    transition: 0.5s;
+}
+.flip .card .face {
+
+  -webkit-backface-visibility: hidden ;
+    backface-visibility: hidden ;
+  z-index: 2;
+  margin-top:60px;
+   
+}
+.flip .card .front {
+  position: absolute;
+   width: 100%;
+  z-index: 1;
+
+}
+.flip .card .back {
+  -webkit-transform: rotatey(-180deg);
+    transform: rotatey(-180deg);
+}
+  .inner{margin:0px !important;}
+  .btn-primary
+  {
+color:white !important;
+ border-radius:4px;
+
+background-color:#71273D !important;
+color:white !important;
+  }
+  .bgcolor
+  {
+  background-color:#E2E1DD;
+  }
+  a{
+  color:grey;
+  }
+   .errspan {
+    //color: lightblue;
+    float: left;
+    margin-left: 10px;
+    margin-top: 5px;
+    position: absolute;
+    z-index: 2;
+	width:10px;
+}
+.input-group .icon-addon .form-control {
+    border-radius: 0 !important;
+}
+
+.icon-addon {
+    position: relative !important;
+    color: #555 !important;
+    display: block !important;
+}
+
+.icon-addon:after,
+.icon-addon:before {
+    display: table !important;
+    content: " " !important;
+}
+
+.icon-addon:after {
+    clear: both !important;
+}
+
+.icon-addon.addon-md .fa,
+.icon-addon .fa, 
+.icon-addon.addon-md .fa,
+.icon-addon .fa {
+    position: absolute !important;
+    z-index: 2 !important;
+    left: 10px !important;
+    font-size: 12px !important;
+    width: 20px !important;
+    margin-left: -2.5px !important;
+    text-align: center !important;
+    padding: 10px 0 !important;
+    top: 1px !important
+}
+
+.icon-addon.addon-lg .form-control {
+    line-height: 1.33 !important;
+    height: 35px !important;
+    font-size: 14px !important; 
+    padding: 10px 16px 10px 40px !important;
+	margin-top:10px !important;
+}
+
+.icon-addon.addon-sm .form-control {
+    height: 30px !important;
+    padding: 5px 10px 5px 28px !important;
+    font-size: 12px !important;
+    line-height: 1.5 !important;
+}
+
+.icon-addon.addon-lg .fa,
+.icon-addon.addon-lg .fa {
+    font-size: 18px !important;
+    margin-left: 0 !important;
+    left: 11px !important;
+    top: 4px !important;
+	color:#706957;
+}
+
+.icon-addon.addon-md .form-control,
+.icon-addon .form-control {
+    padding-left: 30px !important;
+    float: left !important;
+    font-weight: normal !important;
+}
+
+.icon-addon.addon-sm .fa,
+.icon-addon.addon-sm .fa {
+    margin-left: 0 !important;
+    font-size: 12px !important;
+    left: 5px !important;
+    top: -1px !important
+}
+
+.icon-addon .form-control:focus + .fa,
+.icon-addon:hover .fa,
+.icon-addon .form-control:focus + .fa,
+.icon-addon:hover .fa {
+    color: #2580db !important;
+}
+</style>
+<div  ng-controller="InterfaceCtrl">
+<div class="col-md-12 bgcolor">
+    <div id="content-area" role="main" class="">        
+
+
+        <div class="col-md-4"></div>
+        <div class="col-md-4">
+      
+
+          <div class="flip">
+        <div class="card"> 
+          <div class="face front"> 
+              
+
+
+            <div class="panel panel-default">
+
+              <form name="loginForm" ng-submit="submit()" novalidate>
+                
+          
+
+                <h1 class="text-center"><img src="images/landing_logo.gif" width="170px"></h1>
+				<h6 class="errmsg">{{ errmsg }}</h6>
+				
+				 <div class="icon-addon addon-lg">
+                <input type="email" class="form-control" name="email" ng-model="Email" placeholder="Email"  required/>
+                                                        <span><i class="fa fa-user-circle errspan"></i></span> 
+															<span ng-show="submitted && loginForm.email.$invalid">
+															
+                                                            <span class="errmsg" ng-show="submitted && loginForm.email.$error.required">Email is required.</span>
+                                                           
+                                                           <span class="errmsg" ng-show="submitted && loginForm.email.$error.email">Invalid Email address.</span>
+                                                        </span>
+				</div>
+                  <div class="icon-addon addon-lg">
+                <input class="form-control" type="password" name="pwd" ng-model="Password" placeholder="Password" required/>
+			 <i class="fa fa-key errspan"></i> 
+				<span class="errmsg" ng-show="submitted && loginForm.pwd.$error.required">Password is required.</span>
+               
+				<p class="text-right"><a href="">Forgot Password ?</a></p>
+          <button class="btn btn-primary btn-block"  type="submit">LOG IN</button>
+		   </div>
+                <hr>
+               
+                <p class="text-center">
+                  <a href="#" class="fliper-btn">Create new account?</a>
+                </p>
+              </form>
+
+            </div>
+
+
+          </div> 
+          <div class="face back"> 
+            
+
+              <div class="panel panel-default">
+
+              <form class="form-horizontal">
+                
+                <br>
+
+                <h1 class="text-center">LOGO</h1>
+
+                <br>
+                <label>Basic Information</label>
+                <input class="form-control" placeholder="Fullname">
+                <input class="form-control" placeholder="Email">
+                <label>Private Information</label>
+                <input class="form-control" placeholder="Password">
+                <input class="form-control" placeholder="Mobile Number">
+                <button class="btn btn-primary btn-block">SIGN UP</button>
+
+
+                <p class="text-center">
+                  <a href="#" class="fliper-btn">Already have an account?</a>
+                </p>
+                
+              </form>
+
+            </div>
+
+
+
+
+          </div>
+        </div>   
+      </div>
+
+
+
+
+        </div>
+        <div class="col-md-4"></div>
+
+      </div>
+	  </div>
+	  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-route.js"></script>
+        </div>
+		
+		
+
+

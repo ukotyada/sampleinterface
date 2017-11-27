@@ -1,0 +1,108 @@
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<style>
+.bgstyle
+{
+background:#EFEFEF;
+width:100%;
+padding: 10px;
+padding-bottom: 5px;
+}
+</style>
+<div>
+<div id="content-area" role="main">
+<div class="col-sm-12">
+<div class="col-sm-2">
+<ul class="nav nav-navbar nav1">
+<li class="active"><a href="#/home">Dashboard</a></li>
+<li><a href="#/orderstatus">Orders</a></li>
+<li><a href="#/invoicesearch">Invoices</a></li>
+<li><a href="#/claimssearch">Claims</a></li>
+</ul>
+</div>
+<div class="col-sm-10">
+<div class="col-sm-12">
+<div class="bgstyle">
+<label>Last 5 Orders </label>
+</div>
+	 <div ng-show="orders"> 
+	<div class="table1">
+	<table width="100%" border="0" class="table-bordered table-responsive order-items">
+		<thead>
+			<th>Order #</th>
+			<th>Type</th>
+			<th>Order Date</th>
+			<th>PO #</th>
+			<th>Job/Project Name</th>
+			<th>Status</th>
+		</thead>
+		
+		<tr ng-repeat="o in orders | orderBy:'-orderDate' | limitTo:'5'">
+		
+		<td><a href ng-click="selectedOrder(o.orderId)">{{o.orderId}}</td></href>
+			
+			<td>{{o.orderType}}</td>
+			<td>{{o.orderDate}}</td>
+			<td>{{o.PoNumber}}</td>
+			<td>{{o.projectName}}</td>
+			<td>{{o.status}}</td>
+		</tr>
+
+		</table>
+</div>
+	
+	</div>
+</div>
+<div class="col-sm-12" style="padding-top:20px">
+<div class="bgstyle">
+<label>Last 5 Invoices </label>
+</div>
+<div class="table1">
+<table width="100%" class="table-bordered table-responsive order-items">
+	<thead class="thead">
+		<th>Invoice #</th>
+		<th>Invoice Type</th>
+		<th>Order #</th>
+		<th>Invoice Date</th>
+		<th>B/L #</th>
+		<th>Customer #</th>
+	</thead>
+	<tr  ng-repeat="o in orders | orderBy:'-requestedDate' | limitTo:'5'">
+		<td><a href="#/invoicedetails/{{o.invoiceNo}}">{{o.invoiceNo}}</a></td>
+		<td>{{o.order_response[0].invoiceType}}</td>
+		<td>{{o.orderId}}</td>
+		<td>{{o.requestedDate}}</td>
+		<td>{{o.order_response[0].blNum}}</td>
+		<td>{{o.customerId}}</td>
+	</tr>
+</table>
+</div>
+</div>
+<div class="col-sm-12" style="padding-top:20px">
+<div class="bgstyle">
+<label>Last 5 Claims </label>
+</div>
+<div class="table1">
+<table width="100%" class="table-bordered table-responsive order-items">
+	<thead class="thead">
+		<th>Order #</th>
+		<th>Claim Date</th>
+		<th>Case Status</th>
+		<th>Customer #</th>
+	</thead>
+	<tbody>
+     <!-- use our custom filter to only display customers from the orderTypes selected-->
+      <tr ng-repeat="o in data| limitTo:'5'">
+          <td><a ng-click="selected(o.orderId)">{{o.orderId}}</td></href>
+			<td>{{o.DateUpdated}}</td>
+			<td>{{o.CaseStatus}}</td>
+			<td>{{o.CustomerNumber}}</td>
+      </tr>
+	</tbody>
+	</table>
+	</div>
+</div>
+
+</div>
+</div>
+</div>
+</div>
